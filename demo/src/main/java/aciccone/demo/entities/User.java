@@ -11,11 +11,13 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
     private String name;
     private String email;
     private String password;
-    private boolean premium = false;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role;
     @OneToMany(mappedBy = "user")
     private Set<RapportoIntervento> rapporti;
 
@@ -25,18 +27,18 @@ public class User {
 
     ;
 
-    public User(Long id, String name, String email, String password, boolean premium, Set<RapportoIntervento> rapporti) {
-        Id = id;
+    public User(Long id, String name, String email, String password, Role role,  Set<RapportoIntervento> rapporti) {
+
         this.name = name;
         this.email = email;
         this.password = password;
-        this.premium = premium;
+        this.role=role;
         this.rapporti = rapporti;
     }
 
 
-    public void setId(Long id) {
-        Id = id;
+    public Long getId() {
+        return id;
     }
 
     public String getName() {
@@ -63,12 +65,12 @@ public class User {
         this.password = password;
     }
 
-    public boolean isPremium() {
-        return premium;
+    public Role getRole() {
+        return role;
     }
 
-    public void setPremium(boolean premium) {
-        this.premium = premium;
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     public Set<RapportoIntervento> getRapporti() {
@@ -82,11 +84,12 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "Id=" + Id +
+                "Id=" + id +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", premium=" + premium +
+                ", role=" + role +
+                ", rapporti=" + rapporti +
                 '}';
     }
 }

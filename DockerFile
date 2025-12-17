@@ -1,0 +1,28 @@
+# Stage 1: Build
+FROM maven:3.9-eclipse-temurin-21 AS build
+WORKDIR /app
+
+# Copia il pom.xml e scarica le dipendenze (per caching)
+COPY pom.xml .
+RUN mvn dependency:go-offline -B
+
+# Copia il codice sorgente
+COPY src ./src
+
+# Compila l'applicazione
+RUN mvn clean package -DskipTests -B
+
+# Stage 2: Runtime
+FROM eclipse-temurin:21-jre-alpine
+WORKDIR /app
+
+# Copia il JAR dall'immagine di build
+COPY --from=build /app/target/demo.jar app.jar
+
+# Esponi la porta
+EXPOSE 8080
+
+# Comando di avvio con variabili d'ambiente
+ENTRYPOINT ["sh", "-c", "java -Dserver.port=${PORT:-8080} -Xmx512m -jar app.jar"]
+```
+

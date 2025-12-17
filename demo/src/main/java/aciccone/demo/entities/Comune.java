@@ -12,22 +12,21 @@ public class Comune {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    private Long Id;
+    private Long id;
     private String nome;
     @OneToMany(mappedBy = "comune")
     private Set<RapportoIntervento> rapporti;
 
     public Comune(){};
     public Comune(Long id, String nome, Set<RapportoIntervento> rapporti) {
-        Id = id;
+
         this.nome = nome;
         this.rapporti = rapporti;
     }
 
 
-
-    public void setId(Long id) {
-        Id = id;
+    public Long getId() {
+        return id;
     }
 
     public String getNome() {
@@ -49,7 +48,7 @@ public class Comune {
     @Override
     public String toString() {
         return "Comune{" +
-                "Id=" + Id +
+                "Id=" + id +
                 ", nome='" + nome + '\'' +
                 '}';
     }

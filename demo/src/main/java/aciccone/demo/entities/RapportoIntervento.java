@@ -13,11 +13,11 @@ public class RapportoIntervento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-            private Long Id;
+            private Long id;
 
 
     @ManyToOne
-    @JoinColumn(name="user:id")
+    @JoinColumn(name="user_id")
     private User user;
 
     @ManyToOne
@@ -25,7 +25,7 @@ public class RapportoIntervento {
     private Comune comune;
 
     private LocalDate data;
-    private String tipoDocomento;//foto, pdf o manuale
+    private String tipoDocumento;//foto, pdf o manuale
     private String documentoPath; //url o path del file;
     private String firmaPath; // path o url firma digiale
 
@@ -33,21 +33,19 @@ public class RapportoIntervento {
 
 
     public RapportoIntervento(){};
-    public RapportoIntervento(Long id, User user, Comune comune, LocalDate data, String tipoDocomento, String documentoPath, String firmaPath, LocalDateTime timestamp) {
-        Id = id;
+    public RapportoIntervento(Long id, User user, Comune comune, LocalDate data, String tipoDocumento, String documentoPath, String firmaPath, LocalDateTime timestamp) {
         this.user = user;
         this.comune = comune;
         this.data = data;
-        this.tipoDocomento = tipoDocomento;
+        this.tipoDocumento = tipoDocumento;
         this.documentoPath = documentoPath;
         this.firmaPath = firmaPath;
         this.timestamp = timestamp;
     }
 
 
-
-    public void setId(Long id) {
-        Id = id;
+    public Long getId() {
+        return id;
     }
 
     public User getUser() {
@@ -74,12 +72,12 @@ public class RapportoIntervento {
         this.data = data;
     }
 
-    public String getTipoDocomento() {
-        return tipoDocomento;
+    public String getTipoDocumento() {
+        return tipoDocumento;
     }
 
-    public void setTipoDocomento(String tipoDocomento) {
-        this.tipoDocomento = tipoDocomento;
+    public void setTipoDocumento(String tipoDocumento) {
+        this.tipoDocumento = tipoDocumento;
     }
 
     public String getDocumentoPath() {
@@ -109,11 +107,11 @@ public class RapportoIntervento {
     @Override
     public String toString() {
         return "RapportoIntervento{" +
-                "Id=" + Id +
+                "Id=" + id +
                 ", user=" + user +
                 ", comune=" + comune +
                 ", data=" + data +
-                ", tipoDocomento='" + tipoDocomento + '\'' +
+                ", tipoDocumento='" + tipoDocumento + '\'' +
                 ", documentoPath='" + documentoPath + '\'' +
                 ", firmaPath='" + firmaPath + '\'' +
                 ", timestamp=" + timestamp +

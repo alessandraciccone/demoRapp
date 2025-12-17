@@ -6,11 +6,11 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name="payments")
-public class Payments {
+public class Payment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name="user_id", nullable = false)
@@ -23,10 +23,9 @@ public class Payments {
     private String status; //success, faiiled, pending
 
     private LocalDate paymentData;
-    public Payments(){};
+    public Payment(){};
 
-    public Payments(Long id, User user, double amount, String method, String status, LocalDate paymentData) {
-        Id = id;
+    public Payment(Long id, User user, double amount, String method, String status, LocalDate paymentData) {
         this.user = user;
         this.amount = amount;
         this.method = method;
@@ -34,13 +33,11 @@ public class Payments {
         this.paymentData = paymentData;
     }
 
+
     public Long getId() {
-        return Id;
+        return id;
     }
 
-    public void setId(Long id) {
-        Id = id;
-    }
 
     public User getUser() {
         return user;
@@ -85,7 +82,7 @@ public class Payments {
     @Override
     public String toString() {
         return "Payments{" +
-                "Id=" + Id +
+                "Id=" + id +
                 ", user=" + user +
                 ", amount=" + amount +
                 ", method='" + method + '\'' +
