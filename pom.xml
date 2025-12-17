@@ -54,7 +54,9 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-               
+                <configuration>
+                    <mainClass>aciccone.demo.GestioneRappIntApplication</mainClass>
+                </configuration>
             </plugin>
         </plugins>
     </build>
