@@ -7,27 +7,32 @@ import java.util.Set;
 
 @Entity
 @Table(name="users")
-public class User{
+public class User {
 
-@Id
-@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
-private String name;
-private String email;
-private String password;
-@OneToMany(mappedBy = "user")
+    private String name;
+    private String email;
+    private String password;
+    private boolean premium = false;
+    @OneToMany(mappedBy = "user")
     private Set<RapportoIntervento> rapporti;
 
 
-public User(){};
-    public User(Long id, String name, String email, String password, Set<RapportoIntervento> rapporti) {
+    public User() {
+    }
+
+    ;
+
+    public User(Long id, String name, String email, String password, boolean premium, Set<RapportoIntervento> rapporti) {
         Id = id;
         this.name = name;
         this.email = email;
         this.password = password;
+        this.premium = premium;
         this.rapporti = rapporti;
     }
-
 
 
     public void setId(Long id) {
@@ -58,6 +63,14 @@ public User(){};
         this.password = password;
     }
 
+    public boolean isPremium() {
+        return premium;
+    }
+
+    public void setPremium(boolean premium) {
+        this.premium = premium;
+    }
+
     public Set<RapportoIntervento> getRapporti() {
         return rapporti;
     }
@@ -73,6 +86,8 @@ public User(){};
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", premium=" + premium +
                 '}';
     }
 }
+
