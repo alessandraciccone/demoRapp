@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface ComuneRepository  extends JpaRepository<Comune,Long> {
-    Optional<Comune> findByName(String nome);
+    Optional<Comune> findByNome(String nome);
 }
