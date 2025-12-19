@@ -15,12 +15,15 @@ public class Comune {
     private Long id;
     private String nome;
     @OneToMany(mappedBy = "comune")
+    @Column(nullable = false)
+    private String email;
     private Set<RapportoIntervento> rapporti;
 
     public Comune(){};
-    public Comune(Long id, String nome, Set<RapportoIntervento> rapporti) {
+    public Comune(Long id, String nome, String email, Set<RapportoIntervento> rapporti) {
 
         this.nome = nome;
+        this.email=email;
         this.rapporti = rapporti;
     }
 
@@ -37,6 +40,14 @@ public class Comune {
         this.nome = nome;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public Set<RapportoIntervento> getRapporti() {
         return rapporti;
     }
@@ -48,8 +59,9 @@ public class Comune {
     @Override
     public String toString() {
         return "Comune{" +
-                "Id=" + id +
+                "id=" + id +
                 ", nome='" + nome + '\'' +
+                ", email='" + email + '\'' +
                 '}';
     }
 }

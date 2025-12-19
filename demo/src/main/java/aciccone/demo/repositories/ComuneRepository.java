@@ -7,4 +7,5 @@ import java.util.Optional;
 
 public interface ComuneRepository  extends JpaRepository<Comune,Long> {
     Optional<Comune> findByNome(String nome);
+    Optional<Comune> findByEmail(String email);
 }
