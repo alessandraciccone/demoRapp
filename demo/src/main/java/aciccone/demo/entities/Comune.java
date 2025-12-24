@@ -14,9 +14,10 @@ public class Comune {
 
     private Long id;
     private String nome;
-    @OneToMany(mappedBy = "comune")
     @Column(nullable = false)
     private String email;
+    @OneToMany(mappedBy = "comune")
+
     private Set<RapportoIntervento> rapporti;
 
     public Comune(){};
